@@ -5,9 +5,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: coral;
   position: relative;
   overflow: hidden;
+
 }
 .slider-arrow {
   position: absolute;
@@ -19,9 +19,9 @@
   justify-content: center;
   align-items: center;
   margin-right: 10px;
-  float: left;
   cursor: pointer;
   opacity: 0.5;
+  z-index: 2;
 }
 .slider-arrow:first-child {
   left: 0;
@@ -36,14 +36,18 @@
 }
 .slider-wrapper {
   height: 100%;
+  width: 100vw;
   display: flex;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+  touch-action: pan-y;
 }
 .slide-box {
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
-  background-color: #e7bfff;
+  flex-shrink: 0;
 }
 .image-box {
   flex: 1;
