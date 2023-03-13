@@ -1,8 +1,11 @@
 import React from "react";
-import Home from "./pages/Home";
+import ProductList from "./pages/ProductList/ProductList";
+
+
+
 
 const App = () => {
-  return <Home/>;
+  return <ProductList/> ;
 };
 
 export default App;
