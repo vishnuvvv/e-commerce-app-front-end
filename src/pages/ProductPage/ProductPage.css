@@ -1,0 +1,27 @@
+.product-page-container {
+}
+.single-product-cntr-wrap {
+  padding: 50px;
+  display: flex;
+}
+.single-prct-img-cntr {
+  flex: 1;
+}
+.single-prct-img {
+  width: 100%;
+  height: 90vh;
+  object-fit: cover;
+}
+.single-prct-info-cntr {
+  flex: 1;
+}
+.single-prct-title{
+    font-weight: 200;
+}
+.single-prtc-desc{
+    margin: 20px 0px;
+}
+.single-prtc-prize{
+    font-weight: 100;
+    font-size: 40px;
+}
