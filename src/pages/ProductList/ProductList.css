@@ -1,0 +1,26 @@
+.product-list-filter-container {
+  display: flex;
+  justify-content: space-between;
+}
+.dresses-title {
+  margin: 20px;
+}
+.filter-one {
+  margin: 20px;
+}
+.filter-one > select{
+    padding: 10px;
+    margin-right: 20px;
+}
+.filter-text-proudct-list {
+  margin: 20px;
+  font-weight: 600;
+  margin-right: 20px;
+}
+.filter-two {
+  margin: 20px;
+}
+.filter-two >select{
+    padding: 10px;
+    margin-right: 20px;
+}
