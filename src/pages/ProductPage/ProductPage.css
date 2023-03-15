@@ -14,14 +14,78 @@
 }
 .single-prct-info-cntr {
   flex: 1;
+  margin-left: 20px;
 }
-.single-prct-title{
-    font-weight: 200;
+.single-prct-title {
+  font-weight: 200;
 }
-.single-prtc-desc{
-    margin: 20px 0px;
+.single-prtc-desc {
+  margin: 20px 0px;
 }
-.single-prtc-prize{
-    font-weight: 100;
-    font-size: 40px;
+.single-prtc-prize {
+  font-weight: 100;
+  font-size: 40px;
+}
+.single-prct-filter-cntr {
+  width: 50%;
+  margin: 30px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+.filter-optn-div {
+  display: flex;
+  align-items: center;
+}
+.prct-filter-title {
+  font-size: 20px;
+  font-weight: 200;
+}
+.single-prct-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: black;
+  margin: 0px 5px;
+  cursor: pointer;
+}
+
+.prct-filter-size-select {
+  margin-left: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+.prct-filter-size-optn {
+  color: gray;
+}
+.add-cntr{
+  display: flex;
+  width:50%;
+  align-items: center;
+  justify-content: space-between;
+}
+.amnt-cntr{
+  display: flex;
+  align-items: center;
+}
+.prct-amount{
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid teal;
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  margin: 0px 5px;
+}
+.prct-add-btn{
+  padding: 15px;
+  border: 2px solid teal;
+  background-color: aliceblue;
+  cursor: pointer;
+  font-weight: 500;
+  color: teal;
+}
+.prct-add-btn:hover{
+  background-color: white;
 }

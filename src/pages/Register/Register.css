@@ -1,0 +1,65 @@
+.register-container {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      rgba(225, 225, 225, 0.5),
+      rgba(225, 225, 225, 0.5)
+    ),
+    url("https://img.freepik.com/free-photo/young-people-looking-purchases_23-2147688790.jpg?w=1060&t=st=1678886387~exp=1678886987~hmac=c623568c6a03d91fda3461ec5d0cd9044680ad4bcde68815f45e7df20a8a3951")
+      center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-wrapper {
+  width: 40%;
+  background-color: teal;
+  opacity: 0.5;
+  padding: 20px;
+}
+.register-wrapper:hover {
+  background-color: rgb(0, 80, 80);
+}
+
+.register-title {
+  font-size: 24px;
+  font-weight: 400;
+  color: aliceblue;
+}
+
+.register-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.rgtr-input {
+  flex: 1;
+  min-width: 40%;
+  margin: 20px 10px 0px 0px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.rgtr-agreement {
+  font-size: 12px;
+  margin: 20px 0px;
+}
+
+.rgtr-button {
+  width: 40%;
+  border: none;
+  font-weight: 600;
+  padding: 15px 20px;
+  background-color: rgb(0, 28, 28);
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.rgtr-button:hover {
+  background-color: aliceblue;
+  color: black;
+}

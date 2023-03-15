@@ -1,11 +1,14 @@
 import React from "react";
-import ProductPage from "./pages/ProductPage/ProductPage";
+import Cart from "./pages/Cart/Cart";
+
+
+
 
 
 
 
 const App = () => {
-  return <ProductPage/> ;
+  return <Cart/> ;
 };
 
 export default App;
