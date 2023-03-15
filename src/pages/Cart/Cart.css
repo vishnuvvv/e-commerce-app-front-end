@@ -1,0 +1,95 @@
+.cart-container {
+}
+
+.cart-wrap {
+  padding: 20px;
+}
+
+.cart-title {
+  font-weight: 300;
+  text-align: center;
+}
+
+.top-cart {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cart-top-btn-one {
+  padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: transparent;
+}
+.cart-top-btn-two {
+  padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: black;
+  color: azure;
+}
+.top-text-area {
+}
+
+.top-txt {
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 0px 10px;
+}
+
+.bottom-cart {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-prct-info {
+    flex: 3;
+}
+
+.cart-prcdt {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-prct-detail{
+    flex: 2;
+    display: flex;
+}
+
+.cart-prct-img{
+    width: 300px;
+}
+
+.prct-detail{
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.prct_name{}
+
+.prct_id{}
+
+.prct-clr{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgb(240, 196, 0);
+}
+
+.prct-size{}
+
+.cart-prct-prize-dtls{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-prct-summary {
+    flex: 1;
+}
+

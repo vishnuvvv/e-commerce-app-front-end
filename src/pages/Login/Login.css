@@ -1,0 +1,72 @@
+.register-container {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      rgba(225, 225, 225, 0.5),
+      rgba(225, 225, 225, 0.5)
+    ),
+    url("https://img.freepik.com/free-photo/group-friends-posing-with-paper-bags_23-2147688796.jpg?w=1060&t=st=1678886572~exp=1678887172~hmac=e258230d944bafcdf404840ab84762fc01463e98fde568403e83d579e27d2ab7")
+      center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-wrapper {
+  width: 40%;
+  max-width: 450px;
+  background-color: teal;
+  opacity: 0.5;
+  padding: 20px;
+}
+.register-wrapper:hover {
+  background-color: rgb(0, 80, 80);
+}
+
+.register-title {
+  font-size: 24px;
+  font-weight: 400;
+  color: aliceblue;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.rgtr-input {
+  flex: 1;
+  min-width: 40%;
+  margin: 20px 10px 0px 0px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.rgtr-button {
+  width: 40%;
+  border: none;
+  font-weight: 600;
+  padding: 15px 20px;
+  background-color: rgb(0, 28, 28);
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.rgtr-button:hover {
+  background-color: aliceblue;
+  color: black;
+}
+.login-links{
+    margin: 5px;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.login-links:hover{
+    color: rgb(153, 159, 163);
+}
