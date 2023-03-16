@@ -75,4 +75,9 @@
     background-color: transparent;
     cursor: pointer;
 }
+@media all and (max-width: 412px) {
+  .slider-container{
+    display: none;
+  }
+}
 

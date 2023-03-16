@@ -70,3 +70,13 @@
 .login-links:hover{
     color: rgb(153, 159, 163);
 }
+
+@media all and (max-width: 412px) {
+  .register-wrapper {
+    width: 70%;
+    max-width: 450px;
+    background-color: teal;
+    opacity: 0.5;
+    padding: 20px;
+  }
+}
