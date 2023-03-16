@@ -1,6 +1,6 @@
 .navbar-container {
   height: 60px;
-  background-color: rgb(255, 255, 255);  
+  background-color: rgb(255, 255, 255);
 }
 
 .navbar-wrapper {
@@ -10,8 +10,6 @@
   align-items: center;
 }
 
-
-/*left section*/
 .navbar-left-section {
   flex: 1;
   display: flex;
@@ -21,20 +19,18 @@
   font-size: 14px;
   cursor: pointer;
 }
-.search-container-left{
-    border: 0.5px solid lightgray;
-    display: flex;
-    align-items: center;
-    margin-left: 25px;
-    padding: 5px;
-    border-radius: 4px; 
+.search-container-left {
+  border: 0.5px solid lightgray;
+  display: flex;
+  align-items: center;
+  margin-left: 25px;
+  padding: 5px;
+  border-radius: 4px;
 }
 .input-field-left {
-    border: none;
+  border: none;
 }
 
-
-/*middle section*/
 .navbar-middle-section {
   flex: 1;
 }
@@ -42,7 +38,7 @@
   font-weight: bold;
   text-align: center;
 }
-/*right section*/
+
 .navbar-right-section {
   flex: 1;
   display: flex;
@@ -53,4 +49,52 @@
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
+}
+
+@media all and (max-width: 412px) {
+  .navbar-container {
+    height: 50px;
+  }
+  .navbar-wrapper {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0px;
+  }
+
+  .language-icon-left {
+    display: none;
+  }
+  .search-container-left {
+    border: 0.5px solid lightgray;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 2px;
+    padding: 5px;
+    border-radius: 4px;
+    width: 50px;
+  }
+  .input-field-left {
+    border: none;
+    width: 38px;
+  }
+  .main-logo {
+    font-weight: bold;
+    text-align: center;
+    font-size: 24px;
+  }
+  .navbar-right-section {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-item-right {
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
 }
