@@ -5,8 +5,25 @@ import Register from "../src/pages/Register/Register";
 import ProductList from "../src/pages/ProductList/ProductList";
 import ProductPage from "../src/pages/ProductPage/ProductPage";
 import Cart from "../src/pages/Cart/Cart"
+import {
+  BrowserRouter,
+  Link,
+  Route,
+  Routes,
+} from "react-router-dom";
 const App = () => {
-  return <Home/>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/products" element={<ProductList />} />
+        <Route path="/product/:productId" element={<ProductPage />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;
