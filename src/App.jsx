@@ -7,7 +7,6 @@ import ProductPage from "../src/pages/ProductPage/ProductPage";
 import Cart from "../src/pages/Cart/Cart"
 import {
   BrowserRouter,
-  Link,
   Route,
   Routes,
 } from "react-router-dom";
@@ -18,7 +17,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/products" element={<ProductList />} />
+        <Route path="/products/:category" element={<ProductList />} />
         <Route path="/product/:productId" element={<ProductPage />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>

@@ -6,14 +6,16 @@ import Newsletter from "../../components/Newsletter/Newsletter";
 import Footer from "../../components/footer/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
-import { userRequest, publicRequest } from "../../requestMethods";
-
+import { publicRequest } from "../../requestMethods";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../redux/cartRedux";
 const ProductPage = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getProduct = async () => {
@@ -38,6 +40,10 @@ const ProductPage = () => {
     }
   };
 
+  const handleClick = () => {
+    dispatch(addProduct({ ...product, quantity, color, size }));
+  };
+
   return (
     <div className="product-page-container">
       <Navbar />
@@ -49,7 +55,7 @@ const ProductPage = () => {
         <div className="single-prct-info-cntr">
           <h1 className="single-prct-title">{product.title}</h1>
           <p className="single-prtc-desc">{product.desc}</p>
-          <span className="single-prtc-prize">{product.price}</span>
+          <span className="single-prtc-prize">Rs.{product.price}</span>
           <div className="single-prct-filter-cntr">
             <div className="filter-optn-div">
               <span className="prct-filter-title">Color:</span>
@@ -88,7 +94,9 @@ const ProductPage = () => {
                 sx={{ color: "green" }}
               />
             </div>
-            <button className="prct-add-btn">ADD TO CART</button>
+            <button className="prct-add-btn" onClick={handleClick}>
+              ADD TO CART
+            </button>
           </div>
         </div>
       </div>
