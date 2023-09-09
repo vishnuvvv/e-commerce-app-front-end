@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Cart/Cart.css";
+import { userRequest } from "../../requestMethods";
 import Navbar from "../../components/Navbar/Navbar";
 import Announcement from "../../components/Announcement/Announcement";
 import Footer from "../../components/footer/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
-
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Cart = () => {
- 
   const [stripeToken, setStripeToken] = useState();
+  const navigateTo = useNavigate();
   const cart = useSelector((state) => state.cart);
   const KEY = process.env.REACT_APP_STRIPE_KEY;
 
@@ -19,6 +21,30 @@ const Cart = () => {
   };
   console.log(stripeToken);
   console.log(KEY);
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const res = await axios.post(
+          `http://localhost:5000/api/checkout/payment`,
+          {
+            tokenId: stripeToken.id,
+            amount: cart.total,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.REACT_STRIPE_SECRET_KEY}`, 
+            },
+          }
+        );
+        navigateTo("/success");
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    stripeToken && makeRequest();
+  }, [stripeToken, cart.total, navigateTo]);
 
   return (
     <div className="cart-container">

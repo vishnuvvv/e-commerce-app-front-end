@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { products, quantity, total } = useSelector((state) => state.cart);
-  console.log(quantity);
+  //console.log(quantity);
 
   return (
     <div className="navbar-container">

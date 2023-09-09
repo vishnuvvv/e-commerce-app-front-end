@@ -30,7 +30,7 @@ const ProductPage = () => {
     };
     getProduct();
   }, [productId]);
-  console.log(product);
+  //console.log(product);
 
   const handleQauntity = (type) => {
     if (type === "dec") {
