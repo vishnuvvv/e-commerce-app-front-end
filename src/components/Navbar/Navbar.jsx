@@ -3,6 +3,7 @@ import { Badge } from "@mui/material";
 import React from "react";
 import "./Navbar.css";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { products, quantity, total } = useSelector((state) => state.cart);
@@ -24,10 +25,13 @@ const Navbar = () => {
         <div className="navbar-right-section">
           <div className="menu-item-right">REGISTER</div>
           <div className="menu-item-right">SIGN-IN</div>
+
           <div className="menu-item-right">
-            <Badge badgeContent={quantity} color="primary">
-              <ShoppingCartOutlined />
-            </Badge>
+            <Link to={"/cart"}>
+              <Badge badgeContent={quantity} color="primary">
+                <ShoppingCartOutlined />
+              </Badge>
+            </Link>
           </div>
         </div>
       </div>

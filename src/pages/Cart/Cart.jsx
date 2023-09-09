@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Cart/Cart.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Announcement from "../../components/Announcement/Announcement";
 import Footer from "../../components/footer/Footer";
 import { Add, Remove } from "@mui/icons-material";
+import { useSelector } from "react-redux";
+import StripeCheckout from "react-stripe-checkout";
+
 
 const Cart = () => {
+ 
+  const [stripeToken, setStripeToken] = useState();
+  const cart = useSelector((state) => state.cart);
+  const KEY = process.env.REACT_APP_STRIPE_KEY;
+
+  const onToken = (token) => {
+    setStripeToken(token);
+  };
+  console.log(stripeToken);
+  console.log(KEY);
+
   return (
     <div className="cart-container">
       <Navbar />
@@ -21,86 +35,74 @@ const Cart = () => {
           <button className="cart-top-btn-two">CHECKOUT NOW</button>
         </div>
         <div className="bottom-cart">
-          <div className="cart-prct-info">
-            <div className="cart-prcdt">
-              <div className="cart-prct-detail">
-                <img
-                  src="https://img.freepik.com/free-photo/leather-boots_1203-8142.jpg?w=1380&t=st=1678903876~exp=1678904476~hmac=32e4d919f6366f43cd11ba8bcb0704d551acdc0be756db6714aca913770af8d0"
-                  alt="prct"
-                  className="cart-prct-img"
-                />
-                <div className="prct-detail">
-                  <span className="prct_name">
-                    <b>Product:</b> JESSIE THUNDER SHOES
-                  </span>
-                  <span className="prct_id">
-                    <b>ID:</b> 92856445664
-                  </span>
-                  <div className="prct-clr"></div>
-                  <span className="prct-size">
-                    <b>Size:</b> 37.5
-                  </span>
-                </div>
-                <div className="cart-prct-prize-dtls">
-                  <div className="prct-amount-cntr">
-                    <Add sx={{cursor:"pointer"}}/>
-                    <div className="prct-amont">2</div>
-                    <Remove sx={{cursor: "pointer"}}/>
+          <div className="cart-prct-info-container">
+            {cart.products.map((product) => (
+              <div className="cart-prct-info">
+                <div className="cart-prcdt">
+                  <div className="cart-prct-detail">
+                    <img
+                      src={product.img}
+                      alt="prct"
+                      className="cart-prct-img"
+                    />
+                    <div className="prct-detail">
+                      <span className="prct_name">
+                        <b>Product:</b> {product.title}
+                      </span>
+                      <span className="prct_id">
+                        <b>ID: </b> {product._id}
+                      </span>
+                      <div
+                        className="prct-clr"
+                        style={{ backgroundColor: product.color }}
+                      ></div>
+                      <span className="prct-size">
+                        <b>Size:{product.size}</b>
+                      </span>
+                    </div>
+                    <div className="cart-prct-prize-dtls">
+                      <div className="prct-amount-cntr">
+                        <Add sx={{ cursor: "pointer" }} />
+                        <div className="prct-amont">{product.quantity}</div>
+                        <Remove sx={{ cursor: "pointer" }} />
+                      </div>
+                      <div className="prct-amont-ttl">Rs.{product.price}</div>
+                    </div>
                   </div>
-                  <div className="prct-amont-ttl">Rs.907</div>
                 </div>
               </div>
-            </div>
-            <hr className="line-breaker"/>
-            <div className="cart-prcdt">
-              <div className="cart-prct-detail">
-                <img
-                  src="https://img.freepik.com/free-photo/blue-t-shirt_125540-727.jpg?w=1060&t=st=1678906807~exp=1678907407~hmac=fbca8b742ad467836b5fb24a0d1ab0a8bc055492852799551817f1adf6426990"
-                  alt="prct"
-                  className="cart-prct-img"
-                />
-                <div className="prct-detail">
-                  <span className="prct_name">
-                    <b>Product:</b> ALLEN SOLLY BLUE TEA-SHIRT
-                  </span>
-                  <span className="prct_id">
-                    <b>ID:</b> 92856445664
-                  </span>
-                  <div className="prct-clr"></div>
-                  <span className="prct-size">
-                    <b>Size:</b>M
-                  </span>
-                </div>
-                <div className="cart-prct-prize-dtls">
-                  <div className="prct-amount-cntr">
-                    <Add sx={{cursor: "pointer"}}/>
-                    <div className="prct-amont">1</div>
-                    <Remove sx={{cursor: "pointer"}}/>
-                  </div>
-                  <div className="prct-amont-ttl">Rs.1507</div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
           <div className="cart-prct-summary">
             <h1 className="summary-title">ORDER SUMMARY</h1>
             <div className="summary-item">
-             <span className="summary-item-text">Subtotal:</span>
-             <span className="summary-item-price">Rs.2414</span>
+              <span className="summary-item-text">Subtotal:</span>
+              <span className="summary-item-price">Rs.{cart.total}</span>
             </div>
             <div className="summary-item">
-             <span className="summary-item-text">Estimated-shipping:</span>
-             <span className="summary-item-price">Rs.50</span>
+              <span className="summary-item-text">Estimated-shipping:</span>
+              <span className="summary-item-price">Rs.50</span>
             </div>
             <div className="summary-item">
-             <span className="summary-item-text">Discount:</span>
-             <span className="summary-item-price">Rs.-399</span>
+              <span className="summary-item-text">Discount:</span>
+              <span className="summary-item-price">Rs.-399</span>
             </div>
             <div className="summary-item">
-             <span className="summary-item-text">Total:</span>
-             <span className="summary-item-price">Rs.2013</span>
+              <span className="summary-item-text">Total:</span>
+              <span className="summary-item-price">{cart.total}</span>
             </div>
-            <button className="summary-button">CHECKOUT NOW</button>
+            <StripeCheckout
+              name="Wavie Shope"
+              image="https://upload.wikimedia.org/wikipedia/commons/2/2c/Minnesota_Vikings_V_logo.png"
+              billingAddress
+              shippingAddress
+              description={`Your total is Rs.${cart.total}`}
+              amount={cart.total}
+              token={onToken}
+              stripeKey={KEY}
+            >
+              <button className="summary-button">CHECKOUT NOW</button>
+            </StripeCheckout>
           </div>
         </div>
       </div>

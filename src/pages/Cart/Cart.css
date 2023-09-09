@@ -42,6 +42,10 @@
   display: flex;
   justify-content: space-between;
 }
+.cart-prct-info-container {
+  display: flex;
+  flex-direction: column;
+}
 
 .cart-prct-info {
   flex: 3;
