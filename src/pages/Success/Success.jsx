@@ -5,7 +5,7 @@ const Success = () => {
   const location = useLocation();
   console.log(location);
   return (
-    <div>
+    <div style={{ alignItems: "center", justifyContent: "center" }}>
       <h1>Congratulations Payment successful !!!</h1>
     </div>
   );

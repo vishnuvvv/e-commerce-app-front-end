@@ -7,6 +7,7 @@ import ProductPage from "../src/pages/ProductPage/ProductPage";
 import Cart from "../src/pages/Cart/Cart";
 import Success from "../src/pages/Success/Success";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Cancel from "./pages/Cancel/Cancel";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/product/:productId" element={<ProductPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/cancel" element={<Cancel />} />
       </Routes>
     </BrowserRouter>
   );

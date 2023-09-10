@@ -6,8 +6,8 @@ import Announcement from "../../components/Announcement/Announcement";
 import Footer from "../../components/footer/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { useSelector } from "react-redux";
-import StripeCheckout from "react-stripe-checkout";
 import { useNavigate } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 
 const Cart = () => {
@@ -16,35 +16,31 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const KEY = process.env.REACT_APP_STRIPE_KEY;
 
-  const onToken = (token) => {
-    setStripeToken(token);
-  };
-  console.log(stripeToken);
-  console.log(KEY);
+  const makePayment = async () => {
+    const stripe = await loadStripe(KEY);
 
-  useEffect(() => {
-    const makeRequest = async () => {
-      try {
-        const res = await axios.post(
-          `http://localhost:5000/api/checkout/payment`,
-          {
-            tokenId: stripeToken.id,
-            amount: cart.total,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${process.env.REACT_STRIPE_SECRET_KEY}`, 
-            },
-          }
-        );
-        navigateTo("/success");
-        console.log(res);
-      } catch (error) {
-        console.log(error);
-      }
+    const body = {
+      products: cart.products,
     };
-    stripeToken && makeRequest();
-  }, [stripeToken, cart.total, navigateTo]);
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const response = await fetch("http://localhost:5000/api/checkout/payment", {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(body),
+    });
+
+    const session = await response.json();
+
+    const result = stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      console.log(result.error);
+    }
+  };
 
   return (
     <div className="cart-container">
@@ -117,18 +113,14 @@ const Cart = () => {
               <span className="summary-item-text">Total:</span>
               <span className="summary-item-price">{cart.total}</span>
             </div>
-            <StripeCheckout
-              name="Wavie Shope"
-              image="https://upload.wikimedia.org/wikipedia/commons/2/2c/Minnesota_Vikings_V_logo.png"
-              billingAddress
-              shippingAddress
-              description={`Your total is Rs.${cart.total}`}
-              amount={cart.total}
-              token={onToken}
-              stripeKey={KEY}
+
+            <button
+              className="summary-button"
+              type="button"
+              onClick={makePayment}
             >
-              <button className="summary-button">CHECKOUT NOW</button>
-            </StripeCheckout>
+              CHECKOUT NOW
+            </button>
           </div>
         </div>
       </div>
