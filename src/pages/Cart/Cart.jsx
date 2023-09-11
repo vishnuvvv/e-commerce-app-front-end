@@ -1,44 +1,38 @@
-import React, { useEffect, useState } from "react";
 import "../Cart/Cart.css";
-import { userRequest } from "../../requestMethods";
 import Navbar from "../../components/Navbar/Navbar";
 import Announcement from "../../components/Announcement/Announcement";
 import Footer from "../../components/footer/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
-import axios from "axios";
 
 const Cart = () => {
-  const [stripeToken, setStripeToken] = useState();
-  const navigateTo = useNavigate();
   const cart = useSelector((state) => state.cart);
   const KEY = process.env.REACT_APP_STRIPE_KEY;
 
   const makePayment = async () => {
-    const stripe = await loadStripe(KEY);
+    try {
+      const stripe = await loadStripe(KEY);
 
-    const body = {
-      products: cart.products,
-    };
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const response = await fetch("http://localhost:5000/api/checkout/payment", {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(body),
-    });
+      const response = await fetch(
+        "http://localhost:5000/api/checkout/payment",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ products: cart.products }),
+        }
+      );
 
-    const session = await response.json();
+      if (!response.ok) throw new Error("Payment request failed");
 
-    const result = stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
+      const session = await response.json();
+      const result = stripe.redirectToCheckout({ sessionId: session.id });
 
-    if (result.error) {
-      console.log(result.error);
+      if (result.error) throw new Error(result.error.message);
+    } catch (error) {
+      console.error("An error occurred:", error);
     }
   };
 
