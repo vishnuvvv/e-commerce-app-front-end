@@ -8,8 +8,13 @@ import Cart from "../src/pages/Cart/Cart";
 import Success from "../src/pages/Success/Success";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Cancel from "./pages/Cancel/Cancel";
+import { useSelector } from "react-redux";
 
 const App = () => {
+  const user = useSelector((state) => state.user.currentUser);
+  console.log(user)
+  //const navigate = useNavigate();
+  //user ? navigate("/") : navigate("/register");
   return (
     <BrowserRouter>
       <Routes>

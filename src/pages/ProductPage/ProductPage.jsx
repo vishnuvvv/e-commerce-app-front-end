@@ -8,7 +8,7 @@ import { Add, Remove } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import { publicRequest } from "../../requestMethods";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../../redux/cartRedux";
+import { addProduct } from "../../redux/cartSlice";
 const ProductPage = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
