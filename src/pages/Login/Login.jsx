@@ -2,19 +2,24 @@ import React, { useState } from "react";
 import "../Login/Login.css";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/apiCalls";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const { isFetching, error } = useSelector((state) => state.user);
-  console.log(error);
+  const { isFetching, error, currentUser } = useSelector((state) => state.user);
 
   const handleLogin = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
   };
+
+  if(currentUser){
+    navigate("/")
+  }
+
   return (
     <div className="register-container">
       <div className="register-wrapper">
