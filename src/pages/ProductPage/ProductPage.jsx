@@ -6,7 +6,7 @@ import Newsletter from "../../components/Newsletter/Newsletter";
 import Footer from "../../components/footer/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
-import { publicRequest } from "../../requestMethods";
+import { publicRequest } from "../../config/requestMethods";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartSlice";
 const ProductPage = () => {

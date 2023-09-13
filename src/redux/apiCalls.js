@@ -1,5 +1,5 @@
 import { loginStart, loginSucces, loginFailure } from "./userSlice";
-import { publicRequest } from "../requestMethods";
+import { publicRequest } from "../config/requestMethods";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());

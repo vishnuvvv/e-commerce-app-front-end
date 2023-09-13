@@ -3,7 +3,7 @@ import React, {  useRef, useState } from "react";
 import "./Slider.css";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import { sliderItems } from "../../data";
+import { sliderItems } from "../../assets/data";
 
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
