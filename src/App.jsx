@@ -17,7 +17,12 @@ const App = () => {
 
   // Custom route rendering function
   const ProtectedRoute = ({ element, path }) => {
-    return user ? element : <Navigate to="/" />;
+    if (user) {
+      return element;
+    } else {
+      window.alert("Please log in to access this page.");
+      return <Navigate to="/" />;
+    }
   };
 
   return (

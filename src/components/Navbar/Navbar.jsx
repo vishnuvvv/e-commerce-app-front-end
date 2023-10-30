@@ -20,7 +20,8 @@ const Navbar = () => {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-    currentUser && navigate("/login");
+    !currentUser && navigate("/login");
+    window.alert("Are you sure you want logout?");
   };
 
   return (
