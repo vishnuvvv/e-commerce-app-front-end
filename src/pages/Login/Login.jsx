@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import "../Login/Login.css";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/apiCalls";
@@ -7,18 +7,17 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isFetching, error, currentUser } = useSelector((state) => state.user);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
+    if (currentUser.accessToken) {
+      navigate('/')
+    }
   };
-
-  if(currentUser){
-    navigate("/")
-  }
 
   return (
     <div className="register-container">
@@ -41,8 +40,12 @@ const Login = () => {
           <button className="rgtr-button" onClick={handleLogin}>
             {isFetching ? "Loading.." : "LOG IN"}
           </button>
-          <a className="login-links">Don't you rember the password?</a>
-          <a className="login-links">create a new account</a>
+          <a href="/" className="login-links">
+            Don't you rember the password?
+          </a>
+          <a href="/" className="login-links">
+            create a new account
+          </a>
         </form>
       </div>
     </div>

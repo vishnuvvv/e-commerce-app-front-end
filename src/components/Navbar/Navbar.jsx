@@ -1,13 +1,27 @@
-import { Search, ShoppingCartOutlined } from "@mui/icons-material";
+import {
+  Search,
+  ShoppingCartOutlined,
+  LogoutTwoTone,
+} from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import React from "react";
 import "./Navbar.css";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../../redux/userSlice";
 
 const Navbar = () => {
-  const { products, quantity, total } = useSelector((state) => state.cart);
+  const { quantity } = useSelector((state) => state.cart);
+  const { currentUser } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   //console.log(quantity);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+    currentUser && navigate("/login");
+  };
 
   return (
     <div className="navbar-container">
@@ -23,11 +37,24 @@ const Navbar = () => {
           <h1 className="main-logo">Wavie~Shop</h1>
         </div>
         <div className="navbar-right-section">
-          <div className="menu-item-right">REGISTER</div>
-          <div className="menu-item-right">SIGN-IN</div>
+          <div className="menu-item-right">
+            {" "}
+            <Link to="/register" style={{ textDecoration: "none" }}>
+              REGISTER
+            </Link>
+          </div>
+          <div className="menu-item-right">
+            <Link to="/login" style={{ textDecoration: "none" }}>
+              SIGN-IN
+            </Link>
+          </div>
 
           <div className="menu-item-right">
-            <Link to={"/cart"}>
+            <LogoutTwoTone onClick={handleLogout} />
+          </div>
+
+          <div className="menu-item-right">
+            <Link to="/cart">
               <Badge badgeContent={quantity} color="primary">
                 <ShoppingCartOutlined />
               </Badge>
