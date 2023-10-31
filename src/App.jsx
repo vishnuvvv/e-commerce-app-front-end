@@ -20,7 +20,7 @@ const App = () => {
     if (user) {
       return element;
     } else {
-      window.alert("Please log in to access this page.");
+      window.alert(`Please log in to access this path.`);
       return <Navigate to="/" />;
     }
   };
@@ -29,6 +29,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/products" element={<ProductList />} />
 
         {user ? (
           <>
@@ -44,7 +45,7 @@ const App = () => {
           </>
         )}
 
-        {/* Protect these routes for authenticated users */}
+        {/* Protected routes for authenticated users */}
         <Route
           path="/products/:category"
           element={<ProtectedRoute element={<ProductList />} />}

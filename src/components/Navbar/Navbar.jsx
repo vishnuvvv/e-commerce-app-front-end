@@ -2,6 +2,7 @@ import {
   Search,
   ShoppingCartOutlined,
   LogoutTwoTone,
+  Home,
 } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import React from "react";
@@ -28,6 +29,11 @@ const Navbar = () => {
     <div className="navbar-container">
       <div className="navbar-wrapper">
         <div className="navbar-left-section">
+          <div className="nav-left-home-icon">
+            <Link to={"/"}>
+              <Home />
+            </Link>
+          </div>
           <span className="language-icon-left">EN</span>
           <div className="search-container-left">
             <input className="input-field-left" />
