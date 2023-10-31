@@ -30,6 +30,11 @@
 .input-field-left {
   border: none;
 }
+.nav-left-home-icon{
+  color: rgb(0, 47, 47);
+  margin-right: 3px;
+  cursor: pointer;
+}
 
 .navbar-middle-section {
   flex: 1;
