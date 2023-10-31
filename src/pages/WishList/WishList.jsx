@@ -23,7 +23,6 @@ const WishList = () => {
       image: 'https://bornbabies.com/public/main_category/Girl%20Clothes.webp',
     },
    
-    // Add more wishlist items here
   ];
   return (
     <>

@@ -4,6 +4,7 @@ import {
   LogoutTwoTone,
   Home,
 } from "@mui/icons-material";
+import FolderSpecialRoundedIcon from "@mui/icons-material/FolderSpecialRounded";
 import { Badge } from "@mui/material";
 import React from "react";
 import "./Navbar.css";
@@ -13,16 +14,17 @@ import { logout } from "../../redux/userSlice";
 
 const Navbar = () => {
   const { quantity } = useSelector((state) => state.cart);
-  const { currentUser } = useSelector((state) => state.cart);
+  const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   //console.log(quantity);
 
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-    !currentUser && navigate("/login");
     window.alert("Are you sure you want logout?");
+    !currentUser && navigate("/");
   };
 
   return (
@@ -44,29 +46,57 @@ const Navbar = () => {
           <h1 className="main-logo">Wavie~Shop</h1>
         </div>
         <div className="navbar-right-section">
-          <div className="menu-item-right">
-            {" "}
-            <Link to="/register" style={{ textDecoration: "none" }}>
-              REGISTER
-            </Link>
-          </div>
-          <div className="menu-item-right">
-            <Link to="/login" style={{ textDecoration: "none" }}>
-              SIGN-IN
-            </Link>
-          </div>
+          {!currentUser && (
+            <>
+              <div className="menu-item-right">
+                {" "}
+                <Link
+                  to="/register"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  REGISTER
+                </Link>
+              </div>
+              <div className="menu-item-right">
+                <Link
+                  to="/login"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  SIGN-IN
+                </Link>
+              </div>
+            </>
+          )}
 
-          <div className="menu-item-right">
-            <LogoutTwoTone onClick={handleLogout} />
-          </div>
+          {currentUser && (
+            <>
+              <div className="menu-item-right">
+                <LogoutTwoTone onClick={handleLogout} />
+              </div>
 
-          <div className="menu-item-right">
-            <Link to="/cart">
-              <Badge badgeContent={quantity} color="primary">
-                <ShoppingCartOutlined />
-              </Badge>
-            </Link>
-          </div>
+              <div className="menu-item-right">
+                <Link
+                  to="/wishlists"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <Badge>
+                    <FolderSpecialRoundedIcon />
+                  </Badge>
+                </Link>
+              </div>
+
+              <div className="menu-item-right">
+                <Link
+                  to="/cart"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <Badge badgeContent={quantity} color="warning">
+                    <ShoppingCartOutlined />
+                  </Badge>
+                </Link>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

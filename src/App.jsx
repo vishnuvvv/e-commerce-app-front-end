@@ -31,7 +31,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductList />} />
-        <Route path="/wishlist" element={<WishList />} />
+        <Route path="/products/:category" element={<ProductList />} />
 
         {user ? (
           <>
@@ -48,15 +48,16 @@ const App = () => {
         )}
 
         {/* Protected routes for authenticated users */}
-        <Route
-          path="/products/:category"
-          element={<ProtectedRoute element={<ProductList />} />}
-        />
+
         <Route
           path="/product/:productId"
           element={<ProtectedRoute element={<ProductPage />} />}
         />
         <Route path="/cart" element={<ProtectedRoute element={<Cart />} />} />
+        <Route
+          path="/wishlists"
+          element={<ProtectedRoute element={<WishList />} />}
+        />
         <Route
           path="/success"
           element={<ProtectedRoute element={<Success />} />}
