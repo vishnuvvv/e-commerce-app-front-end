@@ -30,7 +30,7 @@ const Navbar = () => {
       <div className="navbar-wrapper">
         <div className="navbar-left-section">
           <div className="nav-left-home-icon">
-            <Link to={"/"}>
+            <Link to={"/"} style={{ textDecoration: "none", color: "inherit" }}>
               <Home />
             </Link>
           </div>
