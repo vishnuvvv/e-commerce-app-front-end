@@ -1,0 +1,42 @@
+/* Center the wishlist box in the container */
+.wishlist-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Style the wishlist box */
+.wishlist-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Style individual wishlist cards */
+.wishlist-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 250px;
+  text-align: center;
+}
+
+.wishlist-card img {
+  max-width: 270px;
+  max-height: 180px;
+  border-radius: 50%;
+}
+
+.wishlist-card button {
+  background-color: teal;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.wishlist-card button:hover{
+  background-color: rgb(0, 41, 41);
+}
+
