@@ -3,19 +3,18 @@ import Navbar from "../../components/Navbar/Navbar";
 import Announcement from "../../components/Announcement/Announcement";
 import Footer from "../../components/footer/Footer";
 import { Add, Remove } from "@mui/icons-material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import { Link } from "react-router-dom";
 import { userRequest } from "../../config/requestMethods";
+import { clearCart } from "../../redux/cartSlice";
+import { useEffect } from "react";
+import { getCartProducts } from "../../redux/apiCalls";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  console.log(cart)
   const { currentUser } = useSelector((state) => state.user);
-  const { products, total,userId } = cart;
-  console.log(userId);
-  console.log(products)
-  const KEY = process.env.REACT_APP_STRIPE_KEY;
+  const { products, total } = cart;
 
   const creatOrder = async () => {
     try {
@@ -61,6 +60,17 @@ const Cart = () => {
     }
   };
 
+  const dispatch = useDispatch();
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
+
+  useEffect(() => {
+    if (currentUser && currentUser._id) {
+      getCartProducts(dispatch, currentUser._id);
+    }
+  }, [currentUser, dispatch]);
+
   return (
     <div className="cart-container">
       <Navbar />
@@ -74,13 +84,14 @@ const Cart = () => {
           <div className="top-text-area">
             <span className="top-txt">Shopping Bag (2)</span>
             <span className="top-txt">Your Wishlist</span>
+            <button onClick={handleClearCart}>clear cart</button>
           </div>
           <button className="cart-top-btn-two">CHECKOUT NOW</button>
         </div>
         <div className="bottom-cart">
           <div className="cart-prct-info-container">
-            {cart.products.map((product, key) => (
-              <div className="cart-prct-info" key={product._id}>
+            {products.map((product, key) => (
+              <div className="cart-prct-info">
                 <div className="cart-prcdt">
                   <div className="cart-prct-detail">
                     <img
