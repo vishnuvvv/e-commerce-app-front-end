@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-// Import your components
 import Home from "../src/pages/Home/Home";
 import Login from "../src/pages/Login/Login";
 import Register from "../src/pages/Register/Register";
@@ -12,6 +10,7 @@ import Cart from "../src/pages/Cart/Cart";
 import Success from "../src/pages/Success/Success";
 import Cancel from "./pages/Cancel/Cancel";
 import WishList from "./pages/WishList/WishList";
+import Orders from "./pages/Orders/Orders";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -57,6 +56,10 @@ const App = () => {
         <Route
           path="/wishlists"
           element={<ProtectedRoute element={<WishList />} />}
+        />
+        <Route
+          path="/orders"
+          element={<ProtectedRoute element={<Orders />} />}
         />
         <Route
           path="/success"

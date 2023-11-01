@@ -5,10 +5,32 @@ import Footer from "../../components/footer/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
+import { Link } from "react-router-dom";
+import { userRequest } from "../../config/requestMethods";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  console.log(cart)
+  const { currentUser } = useSelector((state) => state.user);
+  const { products, total,userId } = cart;
+  console.log(userId);
+  console.log(products)
   const KEY = process.env.REACT_APP_STRIPE_KEY;
+
+  const creatOrder = async () => {
+    try {
+      const res = await userRequest.post("/api/orders/create-order", {
+        userId: currentUser._id,
+        products,
+        amount: total,
+      });
+      if (res.ok) {
+        console.log(res);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const makePayment = async () => {
     try {
@@ -26,6 +48,9 @@ const Cart = () => {
       );
 
       if (!response.ok) throw new Error("Payment request failed");
+      if (response.ok) {
+        creatOrder();
+      }
 
       const session = await response.json();
       const result = stripe.redirectToCheckout({ sessionId: session.id });
@@ -43,7 +68,9 @@ const Cart = () => {
       <div className="cart-wrap">
         <h1 className="cart-title">Cart</h1>
         <div className="top-cart">
-          <button className="cart-top-btn-one">CONTINUE SHOPPING</button>
+          <Link to={"/"}>
+            <button className="cart-top-btn-one">CONTINUE SHOPPING</button>
+          </Link>
           <div className="top-text-area">
             <span className="top-txt">Shopping Bag (2)</span>
             <span className="top-txt">Your Wishlist</span>
@@ -52,8 +79,8 @@ const Cart = () => {
         </div>
         <div className="bottom-cart">
           <div className="cart-prct-info-container">
-            {cart.products.map((product) => (
-              <div className="cart-prct-info">
+            {cart.products.map((product, key) => (
+              <div className="cart-prct-info" key={product._id}>
                 <div className="cart-prcdt">
                   <div className="cart-prct-detail">
                     <img
