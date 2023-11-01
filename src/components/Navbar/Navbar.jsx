@@ -13,12 +13,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/userSlice";
 
 const Navbar = () => {
-  const { quantity } = useSelector((state) => state.cart);
+  const { products } = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  //console.log(quantity);
+  const quantity = products.length;
 
   const handleLogout = (e) => {
     e.preventDefault();

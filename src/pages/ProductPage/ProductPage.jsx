@@ -7,8 +7,9 @@ import Footer from "../../components/footer/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import { publicRequest } from "../../config/requestMethods";
-import { useDispatch } from "react-redux";
-import { addProduct } from "../../redux/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addProductTocart } from "../../redux/apiCalls";
+
 const ProductPage = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
@@ -16,6 +17,10 @@ const ProductPage = () => {
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const userId = user.currentUser._id;
+  console.log(product)
+
 
   useEffect(() => {
     const getProduct = async () => {
@@ -30,7 +35,8 @@ const ProductPage = () => {
     };
     getProduct();
   }, [productId]);
-  //console.log(product);
+
+  console.log();
 
   const handleQauntity = (type) => {
     if (type === "dec") {
@@ -41,7 +47,9 @@ const ProductPage = () => {
   };
 
   const handleClick = () => {
-    dispatch(addProduct({ ...product, quantity, color, size }));
+    const uid = userId;
+    const productData = { ...product, quantity, color, size };
+    addProductTocart(dispatch, { uid, productData });
   };
 
   return (
