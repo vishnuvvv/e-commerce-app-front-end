@@ -1,4 +1,5 @@
 import React from "react";
+import "./Success.css"
 import { useLocation } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Announcement from "../../components/Announcement/Announcement";
