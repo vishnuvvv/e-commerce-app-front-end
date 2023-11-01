@@ -1,4 +1,5 @@
 import React from "react";
+import "./Cancel.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Announcement from "../../components/Announcement/Announcement";
 import Newsletter from "../../components/Newsletter/Newsletter";
