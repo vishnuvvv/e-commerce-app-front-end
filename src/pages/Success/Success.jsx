@@ -1,6 +1,6 @@
 import React from "react";
-import "./Success.css"
-import { useLocation } from "react-router-dom";
+import "./Success.css";
+import { Link, useLocation } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Announcement from "../../components/Announcement/Announcement";
 import Newsletter from "../../components/Newsletter/Newsletter";
@@ -12,8 +12,20 @@ const Success = () => {
     <>
       <Announcement />
       <Navbar />
-      <div style={{ alignItems: "center", justifyContent: "center" }}>
-        <h1>Congratulations Payment successful !!!</h1>
+      <div className="container-success-cp">
+        <h1 className="heading-success-cp">
+          Congratulations Payment successful !!!
+        </h1>
+        <div className="button-container-cp">
+          <Link to={"/orders"}>
+          <button className="view-orders-button-cp">View Orders</button>
+          </Link>
+          <Link to={"/"}>
+          <button className="continue-shopping-button-cp">
+            Continue Shopping
+          </button>
+          </Link>
+        </div>
       </div>
       <Newsletter />
       <Footer />
