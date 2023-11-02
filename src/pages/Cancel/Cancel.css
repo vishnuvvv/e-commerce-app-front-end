@@ -1,0 +1,35 @@
+/* Cancel.css */
+
+.container-cancel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.heading-cancel {
+  font-size: 32px;
+  color: #970000; /* Red color for indicating payment failure */
+  margin-bottom: 20px;
+}
+
+.button-container-cancel {
+  display: flex;
+  gap: 20px;
+}
+
+.return-shopping-button {
+  background-color: #009688; /* Same as your "View Orders" button in Success page */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.return-shopping-button:hover {
+  background-color: #007571;
+}

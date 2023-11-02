@@ -1,0 +1,67 @@
+/* Success.css */
+
+.container-success-cp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.heading-success-cp {
+  font-size: 32px;
+  color: #003530;
+  margin-bottom: 20px;
+}
+
+/* Success.css */
+
+.container-cp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.heading-cp {
+  font-size: 32px;
+  color: #009688;
+  margin-bottom: 20px;
+}
+
+.button-container-cp {
+  display: flex;
+  gap: 20px;
+}
+
+.view-orders-button-cp {
+  background-color: #009688;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-orders-button-cp:hover {
+  background-color: #007571;
+}
+
+.continue-shopping-button-cp {
+  background-color: rgb(224, 159, 39);
+  color: #333;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.continue-shopping-button-cp:hover {
+  background-color: rgb(221, 189, 109);
+}
+
