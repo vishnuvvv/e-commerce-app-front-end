@@ -17,6 +17,7 @@ const Cart = () => {
   const { products, total } = cart;
 
   const creatOrder = async () => {
+    console.log("createOrder starts");
     try {
       const res = await userRequest.post("/api/orders/create-order", {
         userId: currentUser._id,
@@ -32,6 +33,7 @@ const Cart = () => {
   };
 
   const makePayment = async () => {
+    const KEY = process.env.REACT_APP_STRIPE_KEY;
     try {
       const stripe = await loadStripe(KEY);
 
@@ -46,10 +48,12 @@ const Cart = () => {
         }
       );
 
-      if (!response.ok) throw new Error("Payment request failed");
-      if (response.ok) {
+      console.log(response.ok);
+
+      if (response) {
         creatOrder();
       }
+      if (!response.ok) throw new Error("Payment request failed");
 
       const session = await response.json();
       const result = stripe.redirectToCheckout({ sessionId: session.id });
@@ -61,6 +65,7 @@ const Cart = () => {
   };
 
   const dispatch = useDispatch();
+
   const handleClearCart = () => {
     dispatch(clearCart());
   };
@@ -86,11 +91,13 @@ const Cart = () => {
             <span className="top-txt">Your Wishlist</span>
             <button onClick={handleClearCart}>clear cart</button>
           </div>
-          <button className="cart-top-btn-two">CHECKOUT NOW</button>
+          <button className="cart-top-btn-two" onClick={makePayment}>
+            CHECKOUT NOW
+          </button>
         </div>
         <div className="bottom-cart">
           <div className="cart-prct-info-container">
-            {products.map((product, key) => (
+            {products.map((product) => (
               <div className="cart-prct-info">
                 <div className="cart-prcdt">
                   <div className="cart-prct-detail">
