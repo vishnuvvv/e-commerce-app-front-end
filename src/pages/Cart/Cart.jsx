@@ -7,14 +7,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import { Link } from "react-router-dom";
 import { userRequest } from "../../config/requestMethods";
-import { clearCart } from "../../redux/cartSlice";
 import { useEffect } from "react";
-import { getCartProducts } from "../../redux/apiCalls";
+import { deleteAllCartItems, getCartProducts } from "../../redux/apiCalls";
+//import { clearCart } from "../../redux/cartSlice";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.user);
   const { products, total } = cart;
+ 
+  
 
   const creatOrder = async () => {
     console.log("createOrder starts");
@@ -67,7 +69,8 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   const handleClearCart = () => {
-    dispatch(clearCart());
+    deleteAllCartItems(dispatch, currentUser._id);
+    //dispatch(clearCart());
   };
 
   useEffect(() => {

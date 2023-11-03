@@ -4,11 +4,15 @@ import {
   addProductFailure,
   addProductStart,
   addProductSuccess,
+  deleteCartStart,
+  deleteCartSuccess,
+  deleteCartfailure,
   fetchCartStart,
   fetchCartSuccess,
   fetchCartfailure,
 } from "./cartSlice";
 
+//login api call
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
@@ -19,6 +23,7 @@ export const login = async (dispatch, user) => {
   }
 };
 
+//add to cart api call
 export const addProductTocart = async (dispatch, cartItem) => {
   dispatch(addProductStart());
   try {
@@ -28,6 +33,8 @@ export const addProductTocart = async (dispatch, cartItem) => {
     dispatch(addProductFailure());
   }
 };
+
+//get cart items api call
 
 export const getCartProducts = async (dispatch, userId) => {
   dispatch(fetchCartStart());
@@ -40,4 +47,24 @@ export const getCartProducts = async (dispatch, userId) => {
 };
 
 //delete cart
-//update cart
+
+export const deleteAllCartItems = async (dispatch, userId) => {
+  dispatch(deleteCartStart());
+  try {
+    await userRequest.delete(`/api/cart/delete-cart/${userId}`);
+    dispatch(deleteCartSuccess());
+  } catch (error) {
+    dispatch(deleteCartfailure());
+  }
+};
+
+//delete single item from the cart
+
+export const deleteSingleCartItem = async(dispatch, userId, itemId) =>{
+  dispatch()
+  try {
+    
+  } catch (error) {
+    
+  }
+}
