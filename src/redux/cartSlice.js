@@ -74,7 +74,7 @@ const cartSlice = createSlice({
     },
 
     deleteCartItemSuccess: (state, action) => {
-      const itemIdToRemove = action.payload.itemId;
+      const itemIdToRemove = action.payload.itemId; // Correctly extract itemId from payload
       const indexToRemove = state.products.findIndex(
         (item) => item._id === itemIdToRemove
       );

@@ -2,21 +2,24 @@ import "../Cart/Cart.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Announcement from "../../components/Announcement/Announcement";
 import Footer from "../../components/footer/Footer";
-import { Add, Remove } from "@mui/icons-material";
+import { Add, DeleteForeverRounded, Remove } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import { Link } from "react-router-dom";
 import { userRequest } from "../../config/requestMethods";
 import { useEffect } from "react";
-import { deleteAllCartItems, getCartProducts } from "../../redux/apiCalls";
+import {
+  deleteAllCartItems,
+  deleteSingleCartItem,
+  getCartProducts,
+} from "../../redux/apiCalls";
 //import { clearCart } from "../../redux/cartSlice";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.user);
   const { products, total } = cart;
- 
-  
+  const dispatch = useDispatch();
 
   const creatOrder = async () => {
     console.log("createOrder starts");
@@ -66,18 +69,19 @@ const Cart = () => {
     }
   };
 
-  const dispatch = useDispatch();
-
-  const handleClearCart = () => {
-    deleteAllCartItems(dispatch, currentUser._id);
-    //dispatch(clearCart());
-  };
-
   useEffect(() => {
     if (currentUser && currentUser._id) {
       getCartProducts(dispatch, currentUser._id);
     }
-  }, [currentUser, dispatch]);
+  }, [dispatch, currentUser]);
+
+  const handleClearCart = () => {
+    deleteAllCartItems(dispatch, currentUser._id); //dispatch(clearCart());
+  };
+
+  const removeCartItem = (itemId) => {
+    deleteSingleCartItem(dispatch, currentUser._id, itemId);
+  };
 
   return (
     <div className="cart-container">
@@ -122,6 +126,13 @@ const Cart = () => {
                       ></div>
                       <span className="prct-size">
                         <b>Size:{product.size}</b>
+                      </span>
+                      <span
+                        onClick={() => {
+                          removeCartItem(product._id);
+                        }}
+                      >
+                        <DeleteForeverRounded className="prct-dlt-icon" />
                       </span>
                     </div>
                     <div className="cart-prct-prize-dtls">
