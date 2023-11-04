@@ -113,6 +113,11 @@
   font-weight: 200;
 }
 
+.prct-dlt-icon {
+  color: rgb(141, 0, 0);
+  cursor: pointer;
+}
+
 .line-breaker {
   margin: 10px 0px 10px 0px;
   border: none;

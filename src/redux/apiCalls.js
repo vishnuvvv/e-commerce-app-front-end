@@ -4,6 +4,9 @@ import {
   addProductFailure,
   addProductStart,
   addProductSuccess,
+  deleteCartItemStart,
+  deleteCartItemSuccess,
+  deleteCartItemfailure,
   deleteCartStart,
   deleteCartSuccess,
   deleteCartfailure,
@@ -60,11 +63,14 @@ export const deleteAllCartItems = async (dispatch, userId) => {
 
 //delete single item from the cart
 
-export const deleteSingleCartItem = async(dispatch, userId, itemId) =>{
-  dispatch()
+export const deleteSingleCartItem = async (dispatch, userId, itemId) => {
+  dispatch(deleteCartItemStart());
   try {
-    
+    await userRequest.delete(
+      `/api/cart/delete-single-cart-item/${userId}/${itemId}`
+    );
+    dispatch(deleteCartItemSuccess({ itemId }));
   } catch (error) {
-    
+    dispatch(deleteCartItemfailure());
   }
-}
+};
