@@ -92,7 +92,7 @@ export const addItemToWishlist = async (dispatch, userId, item) => {
       `/api/products/add/wishlist/${userId}`,
       item
     );
-    dispatch(addToWishlistSuccess(res.data.wishlist));
+    dispatch(addToWishlistSuccess(res.data));
   } catch (error) {
     dispatch(addToWishlistFailure());
   }
@@ -103,8 +103,11 @@ export const addItemToWishlist = async (dispatch, userId, item) => {
 export const removeItemFromWishlist = async (dispatch, userId, item) => {
   dispatch(removeFromWishlistStart());
   try {
-    await userRequest.delete(`/api/products/delete/wishlist/${userId}`, item);
-    dispatch(removeFromWishlistSuccess());
+    const res = await userRequest.delete(
+      `/api/products/delete/wishlist/${userId}`,
+      item
+    );
+    dispatch(removeFromWishlistSuccess(res.data));
   } catch (error) {
     dispatch(removeFromWishlistFailure());
   }
