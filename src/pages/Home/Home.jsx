@@ -11,7 +11,9 @@ import { getCartProducts } from "../../redux/apiCalls";
 
 const Home = () => {
   const { currentUser } = useSelector((state) => state.user);
+  const {wishlistItems} = useSelector((state)=>state.wishlist)
   const dispatch = useDispatch();
+  console.log(wishlistItems)
 
   useEffect(() => {
     if (currentUser && currentUser._id) {

@@ -1,5 +1,4 @@
 import {
-  Favorite,
   FavoriteBorderOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
@@ -7,15 +6,28 @@ import {
 import React, { useState } from "react";
 import "./Product.css";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { userRequest } from "../../config/requestMethods";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItemToWishlist,
+  removeItemFromWishlist,
+} from "../../redux/apiCalls.js";
 
 const Product = ({ item }) => {
   const { currentUser } = useSelector((state) => state.user);
+  const { wishlistItems } = useSelector((state) => state.wishlist);
+  const [isInWishlist, setIsInWishlist] = useState(false);
+  const dispatch = useDispatch();
   const userId = currentUser?._id;
-  const wishlistState = useSelector((state) => state.user.isInWishlist);
+  console.log(isInWishlist);
+  console.log(wishlistItems);
 
-  const [isInWishlist, setIsInWishlist] = useState(!wishlistState);
+  const addWishlist = async () => {
+    await addItemToWishlist(dispatch, userId, item);
+  };
+
+  const removeWishlist = async () => {
+    removeItemFromWishlist(dispatch, userId, item);
+  };
 
   const handleWishlist = async () => {
     if (isInWishlist) {
@@ -24,25 +36,6 @@ const Product = ({ item }) => {
       await addWishlist();
     }
   };
-
-  const addWishlist = async () => {
-    const res = await userRequest.post(`/product/wishlist/${userId}`, {
-      item,
-    });
-    setIsInWishlist(!isInWishlist);
-    console.log(res)
-    // dispatch(toWishlist(isInWishlist, item));
-  };
-
-  const removeWishlist = async () => {
-    const res = await userRequest.delete(`/product/wishlist/${userId}`, {
-      item,
-    });
-    setIsInWishlist(!isInWishlist);
-    console.log(res)
-    // dispatch(toWishlist(isInWishlist, item));
-  };
-
   return (
     <div className="product-box">
       <div className="product-circle"></div>
@@ -58,11 +51,9 @@ const Product = ({ item }) => {
         </div>
         <div className="product-icons">
           <button onClick={handleWishlist}>
-            {isInWishlist ? (
-              <Favorite style={{ color: "red" }} />
-            ) : (
-              <FavoriteBorderOutlined />
-            )}
+            <FavoriteBorderOutlined
+              style={{ color: isInWishlist ? "red" : "inherit" }}
+            />
           </button>
         </div>
       </div>
