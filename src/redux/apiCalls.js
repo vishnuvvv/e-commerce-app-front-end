@@ -14,6 +14,14 @@ import {
   fetchCartSuccess,
   fetchCartfailure,
 } from "./cartSlice";
+import {
+  addToWishlistFailure,
+  addToWishlistStart,
+  addToWishlistSuccess,
+  removeFromWishlistFailure,
+  removeFromWishlistStart,
+  removeFromWishlistSuccess,
+} from "./wishListSlice";
 
 //login api call
 export const login = async (dispatch, user) => {
@@ -72,5 +80,32 @@ export const deleteSingleCartItem = async (dispatch, userId, itemId) => {
     dispatch(deleteCartItemSuccess({ itemId }));
   } catch (error) {
     dispatch(deleteCartItemfailure());
+  }
+};
+
+//add item to wishlist
+
+export const addItemToWishlist = async (dispatch, userId, item) => {
+  dispatch(addToWishlistStart());
+  try {
+    const res = await userRequest.post(
+      `/api/products/add/wishlist/${userId}`,
+      item
+    );
+    dispatch(addToWishlistSuccess(res.data.wishlist));
+  } catch (error) {
+    dispatch(addToWishlistFailure());
+  }
+};
+
+//remove item from wishlist
+
+export const removeItemFromWishlist = async (dispatch, userId, item) => {
+  dispatch(removeFromWishlistStart());
+  try {
+    await userRequest.delete(`/api/products/delete/wishlist/${userId}`, item);
+    dispatch(removeFromWishlistSuccess());
+  } catch (error) {
+    dispatch(removeFromWishlistFailure());
   }
 };
