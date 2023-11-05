@@ -2,11 +2,10 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:5000";
 
-const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
-// console.log(user);
-const currentUser = user && JSON.parse(user)?.currentUser;
-// console.log(currentUser);
-const token = currentUser?.accessToken;
+const userData = localStorage.getItem("persist:root");
+const user = userData ? JSON.parse(userData).user : null;
+const currentUser = user ? JSON.parse(user).currentUser : null;
+const token = currentUser ? currentUser.accessToken : null;
 console.log(token);
 
 
