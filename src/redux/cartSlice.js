@@ -17,7 +17,7 @@ const cartSlice = createSlice({
     },
 
     addProductSuccess: (state, action) => {
-      state.quantity = state.quantity + 1;
+      state.quantity +=1;
       state.products.push(...action.payload.productData);
       state.total += action.payload.productData.price * action.payload.quantity;
       state.isFetching = false;

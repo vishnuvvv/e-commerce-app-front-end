@@ -30,7 +30,7 @@
 .input-field-left {
   border: none;
 }
-.nav-left-home-icon{
+.nav-left-home-icon {
   color: rgb(0, 47, 47);
   margin-right: 3px;
   cursor: pointer;
@@ -102,5 +102,9 @@
     cursor: pointer;
     margin-left: 10px;
     color: rgb(0, 45, 45);
+  }
+  .nav-username {
+    font-size: 50px;
+    font-weight: bold;
   }
 }

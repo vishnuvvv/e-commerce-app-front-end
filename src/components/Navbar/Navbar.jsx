@@ -71,6 +71,10 @@ const Navbar = () => {
           {currentUser && (
             <>
               <div className="menu-item-right">
+                <p className="nav-username">{`Hello ${currentUser.username}`}</p>
+              </div>
+
+              <div className="menu-item-right">
                 <LogoutTwoTone onClick={handleLogout} />
               </div>
 

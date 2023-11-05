@@ -8,7 +8,7 @@ import { Add, Remove } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import { publicRequest } from "../../config/requestMethods";
 import { useDispatch, useSelector } from "react-redux";
-import { addProductTocart } from "../../redux/apiCalls";
+import { addProductTocart, getCartProducts } from "../../redux/apiCalls";
 
 const ProductPage = () => {
   const { productId } = useParams();
@@ -18,8 +18,8 @@ const ProductPage = () => {
   const [size, setSize] = useState("");
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const currentUser = user.currentUser;
   const userId = user.currentUser._id;
-  console.log(product)
 
 
   useEffect(() => {
@@ -36,8 +36,6 @@ const ProductPage = () => {
     getProduct();
   }, [productId]);
 
-  console.log();
-
   const handleQauntity = (type) => {
     if (type === "dec") {
       quantity > 1 && setQuantity(quantity - 1);
@@ -46,10 +44,25 @@ const ProductPage = () => {
     }
   };
 
-  const handleClick = () => {
+  useEffect(() => {
+    if (currentUser && currentUser._id) {
+      getCartProducts(dispatch, currentUser._id);
+    }
+  }, [dispatch, currentUser]);
+
+  const handleClick = async () => {
     const uid = userId;
     const productData = { ...product, quantity, color, size };
-    addProductTocart(dispatch, { uid, productData });
+
+    try {
+      // Add the product to the cart
+      await addProductTocart(dispatch, { uid, productData });
+
+      // Fetch the updated cart data after successfully adding the product
+      await getCartProducts(dispatch, currentUser._id);
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+    }
   };
 
   return (
