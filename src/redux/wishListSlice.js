@@ -23,12 +23,6 @@ const wishlistSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
-
-    clearWishlist: (state) => {
-      state.isFetching = false;
-      state.error = false;
-      state.wishlistItems = [];
-    },
     //remove items from  wishlist
     removeFromWishlistStart: (state) => {
       state.isFetching = true;
@@ -54,9 +48,35 @@ const wishlistSlice = createSlice({
       state.error = true;
     },
     //get items from  wishlist
-    getWishlistStart: () => {},
-    getWishlistSuccess: () => {},
-    getWishlistFailure: () => {},
+    getWishlistStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getWishlistSuccess: (state, action) => {
+      state.isFetching = false;
+      state.error = false;
+      const newWishlistItems = action.payload; // Wishlist items from the action payload
+
+      // Check for duplicates and add only unique products
+      newWishlistItems.forEach((newItem) => {
+        const isDuplicate = state.wishlistItems.some(
+          (item) => item._id === newItem._id
+        );
+
+        if (!isDuplicate) {
+          state.wishlistItems.push(newItem);
+        }
+      });
+    },
+    getWishlistFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    clearWishlist: (state) => {
+      state.isFetching = false;
+      state.error = false;
+      state.wishlistItems = [];
+    },
   },
 });
 

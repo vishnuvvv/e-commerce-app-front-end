@@ -18,6 +18,9 @@ import {
   addToWishlistFailure,
   addToWishlistStart,
   addToWishlistSuccess,
+  getWishlistFailure,
+  getWishlistStart,
+  getWishlistSuccess,
   removeFromWishlistFailure,
   removeFromWishlistStart,
   removeFromWishlistSuccess,
@@ -110,5 +113,15 @@ export const removeItemFromWishlist = async (dispatch, userId, item) => {
     dispatch(removeFromWishlistSuccess(res.data));
   } catch (error) {
     dispatch(removeFromWishlistFailure());
+  }
+};
+
+export const getAllWishlistItems = async (dispatch, userId) => {
+  dispatch(getWishlistStart());
+  try {
+    const res = await userRequest.get(`/api/products/wishlist/getall/${userId}`);
+    dispatch(getWishlistSuccess(res.data));
+  } catch (error) {
+    dispatch(getWishlistFailure());
   }
 };
