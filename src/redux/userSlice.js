@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { clearCart } from "./cartSlice";
 
 const userSlice = createSlice({
   name: "user",
@@ -22,6 +23,7 @@ const userSlice = createSlice({
     },
     logout: (state) => {
       state.currentUser = null;
+      clearCart();
     },
   },
 });
