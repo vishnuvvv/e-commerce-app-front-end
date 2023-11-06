@@ -1,9 +1,4 @@
-import {
-  Search,
-  ShoppingCartOutlined,
-  LogoutTwoTone,
-  Home,
-} from "@mui/icons-material";
+import { Search, ShoppingCart, LogoutTwoTone, Home } from "@mui/icons-material";
 import FolderSpecialRoundedIcon from "@mui/icons-material/FolderSpecialRounded";
 import { Badge } from "@mui/material";
 import React from "react";
@@ -15,6 +10,9 @@ import { logout } from "../../redux/userSlice";
 const Navbar = () => {
   const { products } = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.user);
+  const wishlistCount = useSelector(
+    (state) => state.wishlist.wishlistItems.length
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -83,8 +81,8 @@ const Navbar = () => {
                   to="/wishlists"
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <Badge>
-                    <FolderSpecialRoundedIcon />
+                  <Badge badgeContent={wishlistCount} color="secondary">
+                    <FolderSpecialRoundedIcon sx={{ color: "goldenrod" }} />
                   </Badge>
                 </Link>
               </div>
@@ -94,8 +92,8 @@ const Navbar = () => {
                   to="/cart"
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <Badge badgeContent={quantity} color="warning">
-                    <ShoppingCartOutlined />
+                  <Badge badgeContent={quantity} color="secondary">
+                    <ShoppingCart sx={{ color: "goldenrod" }} />
                   </Badge>
                 </Link>
               </div>
