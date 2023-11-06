@@ -17,7 +17,7 @@ const wishlistSlice = createSlice({
     addToWishlistSuccess: (state, action) => {
       state.isFetching = false;
       state.error = false;
-      state.wishlistItems.push(action.payload);
+      state.wishlistItems.push(action.payload.item);
     },
     addToWishlistFailure: (state) => {
       state.isFetching = false;

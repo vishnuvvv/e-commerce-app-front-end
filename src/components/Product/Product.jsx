@@ -31,14 +31,12 @@ const Product = ({ item }) => {
 
   const isExistsInWishlist = (wishlistItems, item) => {
     setIsInWishlist(
-      wishlistItems.some((existItem) => existItem.item._id === item._id)
+      wishlistItems.some((existItem) => existItem._id === item._id)
     );
   };
-  // useEffect(() => {
-  //   if (wishlistItems.length > 0) {
-  //     isExistsInWishlist(wishlistItems, item);
-  //   }
-  // }, [wishlistItems, item]);
+  useEffect(() => {
+    isExistsInWishlist(wishlistItems, item);
+  }, [wishlistItems, item]);
 
   const handleWishlist = async () => {
     if (isInWishlist) {
