@@ -7,15 +7,17 @@ import Newsletter from "../../components/Newsletter/Newsletter";
 import Products from "../../components/Products/Products";
 import Slider from "../../components/Slider/Slider";
 import { useDispatch, useSelector } from "react-redux";
-import { getCartProducts } from "../../redux/apiCalls";
+import { getAllWishlistItems, getCartProducts } from "../../redux/apiCalls";
 
 const Home = () => {
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  console.log(currentUser);
 
   useEffect(() => {
     if (currentUser && currentUser._id) {
       getCartProducts(dispatch, currentUser._id);
+      getAllWishlistItems(dispatch, currentUser._id);
     }
   }, [dispatch, currentUser]);
   return (

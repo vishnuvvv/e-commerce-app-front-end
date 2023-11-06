@@ -34,9 +34,11 @@ const Product = ({ item }) => {
       wishlistItems.some((existItem) => existItem.item._id === item._id)
     );
   };
-  useEffect(() => {
-    isExistsInWishlist(wishlistItems, item);
-  }, [wishlistItems, item]);
+  // useEffect(() => {
+  //   if (wishlistItems.length > 0) {
+  //     isExistsInWishlist(wishlistItems, item);
+  //   }
+  // }, [wishlistItems, item]);
 
   const handleWishlist = async () => {
     if (isInWishlist) {
