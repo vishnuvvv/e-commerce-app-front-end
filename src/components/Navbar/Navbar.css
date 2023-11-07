@@ -5,9 +5,9 @@
   z-index: 100;
   width: 100%;
   top: 0;
-  box-shadow: 1px 4px 22px -9px rgba(245, 187, 0, 0.75);
-  -webkit-box-shadow: 1px 4px 22px -9px rgba(245, 187, 0, 0.75);
-  -moz-box-shadow: 1px 4px 22px -9px rgba(245, 187, 0, 0.75);
+  box-shadow: 1px 4px 22px -9px rgba(80, 78, 72, 0.75);
+  -webkit-box-shadow: 1px 4px 22px -9px rgba(57, 56, 50, 0.75);
+  -moz-box-shadow: 1px 4px 22px -9px rgba(72, 70, 64, 0.75);
 }
 
 .navbar-wrapper {

@@ -7,10 +7,13 @@ import Navbar from "../../components/Navbar/Navbar";
 import Announcement from "../../components/Announcement/Announcement";
 import Newsletter from "../../components/Newsletter/Newsletter";
 import Footer from "../../components/footer/Footer";
+//import { Visibility, VisibilityOff } from "@mui/icons-material";
+
 
 const Login = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  //const [isPasswordVisible, setPasswordVisible] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isFetching, error, currentUser } = useSelector((state) => state.user);
@@ -22,6 +25,9 @@ const Login = () => {
       navigate("/");
     }
   };
+  // const togglePasswordVisibility = () => {
+  //   setPasswordVisible(!isPasswordVisible);
+  // };
 
   return (
     <>
@@ -39,6 +45,7 @@ const Login = () => {
             <input
               placeholder="password"
               className="rgtr-input"
+              type="password"
               onChange={(e) => setPassword(e.target.value)}
             />
             {error && (
