@@ -9,8 +9,9 @@ import { Link } from "react-router-dom"; // Import Link from react-router-dom
 const Cancel = () => {
   return (
     <>
-      <Announcement />
+   
       <Navbar />
+      <Announcement />
       <div className="container-cancel">
         <h1 className="heading-cancel">Payment Failed!</h1>
         <div className="button-container-cancel">
