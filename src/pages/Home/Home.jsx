@@ -21,8 +21,9 @@ const Home = () => {
   }, [dispatch, currentUser]);
   return (
     <div>
-      <Announcement />
+
       <Navbar />
+      <Announcement />
       <Slider />
       <Categories />
       <Products />

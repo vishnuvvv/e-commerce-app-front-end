@@ -10,8 +10,9 @@ const Orders = () => {
   const image = "https://bornbabies.com/public/main_category/Girl%20Clothes.webp"
   return (
     <>
-      <Announcement />
+
       <Navbar />
+      <Announcement />
       <div className="orders-container-oz">
         <p className="view-all-heading-oz">View all orders</p>
         <div className="order-card-oz">

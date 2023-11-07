@@ -2,7 +2,6 @@ import React from "react";
 import "./WishList.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Announcement from "../../components/Announcement/Announcement";
-import Newsletter from "../../components/Newsletter/Newsletter";
 import Footer from "../../components/footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteForeverRounded } from "@mui/icons-material";
@@ -58,7 +57,6 @@ const WishList = () => {
           ))}
         </div>
       </div>
-      <Newsletter />
       <Footer />
     </>
   );

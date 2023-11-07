@@ -10,8 +10,9 @@ const Success = () => {
   console.log(location);
   return (
     <>
-      <Announcement />
+
       <Navbar />
+      <Announcement />
       <div className="container-success-cp">
         <h1 className="heading-success-cp">
           Congratulations Payment successful !!!

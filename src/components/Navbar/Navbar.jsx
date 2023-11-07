@@ -31,7 +31,9 @@ const Navbar = () => {
         <div className="navbar-left-section">
           <div className="nav-left-home-icon">
             <Link to={"/"} style={{ textDecoration: "none", color: "inherit" }}>
-              <Home />
+              <div data-label="Home" className="icon-with-label">
+                <Home sx={{ color: "goldenrod" }} />
+              </div>
             </Link>
           </div>
           <span className="language-icon-left">EN</span>
@@ -73,7 +75,9 @@ const Navbar = () => {
               </div>
 
               <div className="menu-item-right">
-                <LogoutTwoTone onClick={handleLogout} />
+                <div data-label="Logout" className="icon-with-label">
+                  <LogoutTwoTone onClick={handleLogout} />
+                </div>
               </div>
 
               <div className="menu-item-right">
@@ -81,9 +85,11 @@ const Navbar = () => {
                   to="/wishlists"
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <Badge badgeContent={wishlistCount} color="secondary">
-                    <FolderSpecialRoundedIcon sx={{ color: "goldenrod" }} />
-                  </Badge>
+                  <div data-label="Favourites" className="icon-with-label">
+                    <Badge badgeContent={wishlistCount} color="secondary">
+                      <FolderSpecialRoundedIcon sx={{ color: "goldenrod" }} />
+                    </Badge>
+                  </div>
                 </Link>
               </div>
 
@@ -92,9 +98,11 @@ const Navbar = () => {
                   to="/cart"
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <Badge badgeContent={quantity} color="secondary">
-                    <ShoppingCart sx={{ color: "goldenrod" }} />
-                  </Badge>
+                  <div data-label="Cart" className="icon-with-label">
+                    <Badge badgeContent={quantity} color="secondary">
+                      <ShoppingCart sx={{ color: "goldenrod" }} />
+                    </Badge>
+                  </div>
                 </Link>
               </div>
             </>
