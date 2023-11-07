@@ -4,10 +4,37 @@ import Navbar from "../../components/Navbar/Navbar";
 import Announcement from "../../components/Announcement/Announcement";
 import Newsletter from "../../components/Newsletter/Newsletter";
 import Footer from "../../components/footer/Footer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { DeleteForeverRounded } from "@mui/icons-material";
+import {
+  // addProductTocart,
+  // getCartProducts,
+  removeItemFromWishlist,
+} from "../../redux/apiCalls";
 
 const WishList = () => {
   const { wishlistItems } = useSelector((state) => state.wishlist);
+  const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const userId = currentUser._id;
+  const deleteItem = (dispatch, userId, item) => {
+    removeItemFromWishlist(dispatch, userId, item);
+  };
+
+  // const addToCart = async (dipsatch, userId, item) => {
+  //   const uid = userId;
+  //   const productData = item;
+  //   try {
+  //     // Add the product to the cart
+  //     await addProductTocart(dispatch, { uid, productData });
+
+  //     // Fetch the updated cart data after successfully adding the product
+  //     await getCartProducts(dispatch, userId);
+  //   } catch (error) {
+  //     console.error("Error adding product to cart:", error);
+  //   }
+  // };
+
   return (
     <>
       <Navbar />
@@ -15,12 +42,18 @@ const WishList = () => {
       <div className="wishlist-container">
         <div className="wishlist-box">
           {wishlistItems.map((item) => (
-            <div key={item.id} className="wishlist-card">
+            <div key={item._id} className="wishlist-card">
               <img src={item.img} alt={item.title} />
               <h2>{item.title}</h2>
               <p>{item.description}</p>
               <p>{item.price}</p>
-              <button>Add to Cart</button>
+              <DeleteForeverRounded
+                className="delete-icon-wish"
+                onClick={() => deleteItem(dispatch, userId, item)}
+              />
+              {/* <button onClick={() => addToCart(dispatch, userId)}>
+                Add to Cart
+              </button> */}
             </div>
           ))}
         </div>
@@ -32,20 +65,3 @@ const WishList = () => {
 };
 
 export default WishList;
-
- // const wishlistItems = [
-  //   {
-  //     id: 1,
-  //     title: 'Product 1',
-  //     description: 'Description of Product 1',
-  //     price: '$10.99',
-  //     image: 'https://www.jiomart.com/images/product/original/rvyljxmyse/sagun-dresses-girls-light-blue-a-line-frock-7-8-yrs-kids-wear-girls-frock-kids-party-wear-clothing-accessories-baby-girls-dresses-frock-product-images-rvyljxmyse-0-202212010957.jpg?im=Resize=(500,630)',
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'Product 2',
-  //     description: 'Description of Product 2',
-  //     price: '$19.99',
-  //     image: 'https://bornbabies.com/public/main_category/Girl%20Clothes.webp',
-  // //   },
-  // ];

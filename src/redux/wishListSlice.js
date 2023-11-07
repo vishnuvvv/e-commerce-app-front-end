@@ -29,7 +29,8 @@ const wishlistSlice = createSlice({
       state.error = false;
     },
     removeFromWishlistSuccess: (state, action) => {
-      const deletedItemId = action.payload.item._id;
+      console.log(action.payload.removedItem);
+      const deletedItemId = action.payload.removedItem._id;
       console.log(deletedItemId);
       const index = state.wishlistItems.findIndex(
         (item) => item._id === deletedItemId

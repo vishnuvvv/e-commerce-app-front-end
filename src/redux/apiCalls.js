@@ -106,15 +106,16 @@ export const addItemToWishlist = async (dispatch, userId, item) => {
 export const removeItemFromWishlist = async (dispatch, userId, item) => {
   dispatch(removeFromWishlistStart());
   try {
-    const res = await userRequest.delete(
-      `/api/products/delete/wishlist/${userId}`,
-      item
-    );
+    const res = await userRequest.delete(`/api/products/delete/wishlist/${userId}`, {
+      data: item,  // Send 'item' as JSON in the request body
+    });
+    console.log(res.data);
     dispatch(removeFromWishlistSuccess(res.data));
   } catch (error) {
     dispatch(removeFromWishlistFailure());
   }
 };
+
 
 export const getAllWishlistItems = async (dispatch, userId) => {
   dispatch(getWishlistStart());
