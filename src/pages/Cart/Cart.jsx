@@ -20,6 +20,7 @@ const Cart = () => {
   const { currentUser } = useSelector((state) => state.user);
   const { products, total } = cart;
   const dispatch = useDispatch();
+  const address = currentUser.address
 
   const creatOrder = async () => {
     console.log("createOrder starts");
@@ -28,6 +29,7 @@ const Cart = () => {
         userId: currentUser._id,
         products,
         amount: total,
+        address
       });
       if (res.ok) {
         console.log(res);

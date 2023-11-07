@@ -44,12 +44,6 @@ const ProductPage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (currentUser && currentUser._id) {
-  //     getCartProducts(dispatch, currentUser._id);
-  //   }
-  // }, [dispatch, currentUser]);
-
   const handleClick = async () => {
     const uid = userId;
     const productData = { ...product, quantity, color, size };
