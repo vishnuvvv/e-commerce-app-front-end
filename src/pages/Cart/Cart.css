@@ -166,6 +166,27 @@
   cursor: pointer;
 }
 
+.link-style {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.clear-cart-button {
+  background-color: #730000; /* Red background color */
+  color: #fff; /* White text color */
+  border: none;
+  padding: 5px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.clear-cart-button:hover {
+  background-color: #e60000; /* Darker red on hover */
+}
+
 @media all and (max-width: 412px) {
   .cart-wrap {
     padding: 10px;

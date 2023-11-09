@@ -1,5 +1,6 @@
 import { Search, ShoppingCart, LogoutTwoTone, Home } from "@mui/icons-material";
 import FolderSpecialRoundedIcon from "@mui/icons-material/FolderSpecialRounded";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { Badge } from "@mui/material";
 import React from "react";
 import "./Navbar.css";
@@ -82,10 +83,21 @@ const Navbar = () => {
 
               <div className="menu-item-right">
                 <Link
+                  to="/orders"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <div data-label="Ordered Items" className="icon-with-label">
+                    <LocalMallIcon sx={{ color: "goldenrod" }} />
+                  </div>
+                </Link>
+              </div>
+
+              <div className="menu-item-right">
+                <Link
                   to="/wishlists"
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <div data-label="Favourites" className="icon-with-label">
+                  <div data-label="Wishlists" className="icon-with-label">
                     <Badge badgeContent={wishlistCount} color="secondary">
                       <FolderSpecialRoundedIcon sx={{ color: "goldenrod" }} />
                     </Badge>
