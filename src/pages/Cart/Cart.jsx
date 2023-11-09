@@ -20,7 +20,8 @@ const Cart = () => {
   const { currentUser } = useSelector((state) => state.user);
   const { products, total } = cart;
   const dispatch = useDispatch();
-  const address = currentUser.address
+  const address = currentUser.address;
+  console.log(total);
 
   const creatOrder = async () => {
     console.log("createOrder starts");
@@ -29,7 +30,7 @@ const Cart = () => {
         userId: currentUser._id,
         products,
         amount: total,
-        address
+        address,
       });
       if (res.ok) {
         console.log(res);
@@ -96,9 +97,15 @@ const Cart = () => {
             <button className="cart-top-btn-one">CONTINUE SHOPPING</button>
           </Link>
           <div className="top-text-area">
-            <span className="top-txt">Shopping Bag (2)</span>
-            <span className="top-txt">Your Wishlist</span>
-            <button onClick={handleClearCart}>clear cart</button>
+            <Link to={"/orders"} className="link-style">
+              <span className="top-txt">Shopping Bag (2)</span>
+            </Link>
+            <Link to={"/wishlists"} className="link-style">
+              <span className="top-txt">Your Wishlist</span>
+            </Link>
+            <button onClick={handleClearCart} className="clear-cart-button">
+              clear cart
+            </button>
           </div>
           <button className="cart-top-btn-two" onClick={makePayment}>
             CHECKOUT NOW
@@ -107,7 +114,7 @@ const Cart = () => {
         <div className="bottom-cart">
           <div className="cart-prct-info-container">
             {products.map((product) => (
-              <div className="cart-prct-info">
+              <div className="cart-prct-info" key={product._id}>
                 <div className="cart-prcdt">
                   <div className="cart-prct-detail">
                     <img
@@ -158,11 +165,11 @@ const Cart = () => {
             </div>
             <div className="summary-item">
               <span className="summary-item-text">Estimated-shipping:</span>
-              <span className="summary-item-price">Rs.50</span>
+              <span className="summary-item-price">Rs.0</span>
             </div>
             <div className="summary-item">
               <span className="summary-item-text">Discount:</span>
-              <span className="summary-item-price">Rs.-399</span>
+              <span className="summary-item-price">Rs.0</span>
             </div>
             <div className="summary-item">
               <span className="summary-item-text">Total:</span>

@@ -17,9 +17,8 @@ const cartSlice = createSlice({
     },
 
     addProductSuccess: (state, action) => {
-      state.quantity +=1;
+      state.quantity += 1;
       state.products.push(...action.payload.productData);
-      state.total += action.payload.productData.price * action.payload.quantity;
       state.isFetching = false;
       state.error = false;
     },
@@ -38,6 +37,9 @@ const cartSlice = createSlice({
     fetchCartSuccess: (state, action) => {
       state.error = false;
       state.products = action.payload.products; // Replace the existing products with the fetched products
+      state.total = state.products.reduce((total, product) => {
+        return total + product.price * product.quantity;
+      }, 0);
       state.userId = action.payload.userId;
       state.isFetching = false;
     },
