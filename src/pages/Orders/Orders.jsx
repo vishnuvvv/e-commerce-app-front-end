@@ -8,15 +8,13 @@ import { userRequest } from "../../config/requestMethods";
 import { useSelector } from "react-redux";
 
 const Orders = () => {
-  const image =
-    "https://bornbabies.com/public/main_category/Girl%20Clothes.webp";
-  const [order, setOrder] = useState({});
+  const [orders, setOrders] = useState([]);
   const { currentUser } = useSelector((state) => state.user);
   const id = currentUser._id;
   const getUserOrders = async (id) => {
     try {
       const res = await userRequest.get(`/api/orders/get-user-orders/${id}`);
-     setOrder(res.data)
+      setOrders(res.data);
     } catch (error) {
       console.error(error);
     }
@@ -24,26 +22,42 @@ const Orders = () => {
   useEffect(() => {
     getUserOrders(id);
   }, [id]);
-  console.log(order)
   return (
     <>
       <Navbar />
       <Announcement />
       <div className="orders-container-oz">
         <p className="view-all-heading-oz">View all orders</p>
-        <div className="order-card-oz">
-          <div className="order-image-oz">
-            <img src={image} alt="Order" />
-          </div>
-          <div className="order-details-oz">
-            <h3>Order ID: #12345</h3>
-            <p>Total Amount: $100.00</p>
-            <p>Shipped: 10/30/2023</p>
-            <p>Delivered: 11/05/2023</p>
-            {/* <!-- Add more order details here --> */}
-          </div>
+        <div>
+          {orders.length === 0 ? (
+            <p className="no-orders-message">No orders found. You have not ordered anything yet.</p>
+          ) : (
+            orders.map((order) => (
+              <div key={order._id} className="order-container-oz">
+                <h5>Order ID: {order._id}</h5>
+                <p>
+                  Ordered On: {new Date(order.createdAt).toLocaleDateString()}
+                </p>
+                <div className="order-card-oz">
+                  {order.products.map((product) => (
+                    <div key={product._id} className="product-card-oz">
+                      <div className="product-image-oz">
+                        <img src={product.img} alt={product.title} />
+                      </div>
+                      <div className="product-details-oz">
+                        <h3>{product.title}</h3>
+                        <p>Price: ${product.price}</p>
+                      </div>
+                      <div className="delete-button-oz">
+                        <button>Cancel Order</button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))
+          )}
         </div>
-        {/* <!-- Repeat order-card for each order --> */}
       </div>
       <Newsletter />
       <Footer />

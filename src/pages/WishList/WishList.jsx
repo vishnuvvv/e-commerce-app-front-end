@@ -38,23 +38,25 @@ const WishList = () => {
     <>
       <Navbar />
       <Announcement />
+
       <div className="wishlist-container">
         <div className="wishlist-box">
-          {wishlistItems.map((item) => (
-            <div key={item._id} className="wishlist-card">
-              <img src={item.img} alt={item.title} />
-              <h2>{item.title}</h2>
-              <p>{item.description}</p>
-              <p>{item.price}</p>
-              <DeleteForeverRounded
-                className="delete-icon-wish"
-                onClick={() => deleteItem(dispatch, userId, item)}
-              />
-              {/* <button onClick={() => addToCart(dispatch, userId)}>
-                Add to Cart
-              </button> */}
-            </div>
-          ))}
+          {wishlistItems.length === 0 ? (
+            <p className="empty-wishlist-message">Your wishlist is empty.</p>
+          ) : (
+            wishlistItems.map((item) => (
+              <div key={item._id} className="wishlist-card">
+                <img src={item.img} alt={item.title} />
+                <h2>{item.title}</h2>
+                <p>{item.description}</p>
+                <p>Rs.{item.price}</p>
+                <DeleteForeverRounded
+                  className="delete-icon-wish"
+                  onClick={() => deleteItem(dispatch, userId, item)}
+                />
+              </div>
+            ))
+          )}
         </div>
       </div>
       <Footer />
