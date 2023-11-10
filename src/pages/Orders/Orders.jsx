@@ -11,6 +11,7 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
   const { currentUser } = useSelector((state) => state.user);
   const id = currentUser._id;
+
   const getUserOrders = async (id) => {
     try {
       const res = await userRequest.get(`/api/orders/get-user-orders/${id}`);
@@ -22,6 +23,39 @@ const Orders = () => {
   useEffect(() => {
     getUserOrders(id);
   }, [id]);
+
+  const handleDeleteOrder = async (orderId, productId) => {
+    const isConfirmed = window.confirm(
+      "Are you sure you want to cancel this order?"
+    );
+
+    if (!isConfirmed) {
+      // If the user cancels the deletion, exit the function
+      return;
+    }
+    try {
+      // Delete the product from the order
+      await userRequest.delete(
+        `/api/orders/delete-product-from-order/${id}/${orderId}/${productId}`
+      );
+
+      // Update the state to trigger a re-render
+      setOrders((prevOrders) =>
+        prevOrders.map((order) => {
+          if (order._id === orderId) {
+            // Remove the deleted product from the order's products array
+            order.products = order.products.filter(
+              (product) => product._id !== productId
+            );
+          }
+          return order;
+        })
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -30,7 +64,9 @@ const Orders = () => {
         <p className="view-all-heading-oz">View all orders</p>
         <div>
           {orders.length === 0 ? (
-            <p className="no-orders-message">No orders found. You have not ordered anything yet.</p>
+            <p className="no-orders-message">
+              No orders found. You have not ordered anything yet.
+            </p>
           ) : (
             orders.map((order) => (
               <div key={order._id} className="order-container-oz">
@@ -49,7 +85,13 @@ const Orders = () => {
                         <p>Price: ${product.price}</p>
                       </div>
                       <div className="delete-button-oz">
-                        <button>Cancel Order</button>
+                        <button
+                          onClick={() =>
+                            handleDeleteOrder(order._id, product._id)
+                          }
+                        >
+                          Cancel Order
+                        </button>
                       </div>
                     </div>
                   ))}
