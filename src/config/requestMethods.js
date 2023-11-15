@@ -6,7 +6,7 @@ const userData = localStorage.getItem("persist:root");
 const user = userData ? JSON.parse(userData).user : null;
 const currentUser = user ? JSON.parse(user).currentUser : null;
 const token = currentUser ? currentUser.accessToken : null;
-console.log(token);
+
 
 
 export const publicRequest = axios.create({
