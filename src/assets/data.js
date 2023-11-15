@@ -1,5 +1,4 @@
 export const sliderItems = [
-
   {
     id: 1,
     img: "https://img.freepik.com/free-photo/full-length-portrait-happy-excited-girl-bright-colorful-clothes-holding-shopping-bags-while-standing-showing-peace-gesture-isolated_231208-5946.jpg?w=1380&t=st=1678204130~exp=1678204730~hmac=ddde804c753da35de0c07f5799c733cbd66732ffb50e91a1aecc4805a025bdce",
@@ -26,19 +25,19 @@ export const sliderItems = [
 export const categories = [
   {
     id: 1,
-    img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    img: "https://img.freepik.com/free-photo/fashion-stylish-model-dressed-elegant-light-pink-suit-posing-near-white-wall_158538-13418.jpg?w=740&t=st=1700067745~exp=1700068345~hmac=0a09001b11cd9a2b98abd2e436d514968b70a58c49abd5b96b1fcbf9b66d92e1",
     title: "SHIRT STYLE!",
     cat:"women"
   },
   {
     id: 2,
-    img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    img: "https://img.freepik.com/free-photo/brutal-hipster-handsome-stylish-bearded-man-brown_285396-4633.jpg?w=826&t=st=1700067691~exp=1700068291~hmac=9c474f9fa20c42ac97234a83a1d8c626b261d01210aef0c278ecddcd3eed4fe4",
     title: "LOUNGEWEAR LOVE",
     cat:"coat"
   },
   {
     id: 3,
-    img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    img: "https://img.freepik.com/free-photo/young-friends-having-fun-together_23-2149560756.jpg?size=626&ext=jpg&ga=GA1.1.404061632.1692293053&semt=ais",
     title: "LIGHT JACKETS",
     cat:"jeans"
   },
